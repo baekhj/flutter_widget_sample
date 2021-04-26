@@ -29,6 +29,19 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  # CryptoJS 위한...
+  tuple: ^1.0.3
+  encrypt: ^4.0.0
+  # httpLibrarary  이용을 위한..
+  http: ^0.12.0+1
+  # Toast 띄우기용..
+  toast: ^0.1.5
+  #애니메이션 효과
+  sa_v1_migration: ^1.1.2
+  #ToString
+  to_string: ^1.2.1
+  intl: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
