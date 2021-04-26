@@ -78,7 +78,7 @@ class _dropdownSampleState extends State<dropdownSample> {
                     ),
                   ),
                 ),
-                bottomDefaultBtn("선택", MediaQuery.of(context).size.width*0.45, () {
+                defaultBottomBtn("선택", MediaQuery.of(context).size.width*0.45, () {
                   bool isOk = false;
                   dataList.forEach((element) {
                     if(element['value']==valCtr.text){
@@ -98,9 +98,13 @@ class _dropdownSampleState extends State<dropdownSample> {
                 }),
               ],
             ),
-            cancelBottomBtn("값초기화/비활성화", MediaQuery.of(context).size.width*0.9, () {
+            defaultBottomBtn("값초기화", MediaQuery.of(context).size.width*0.9, () {
               setState(() {
                 _selectValue='';
+              });
+            }),
+            cancelBottomBtn("비활성화", MediaQuery.of(context).size.width*0.9, () {
+              setState(() {
                 _isDisable = true;
               });
             }),

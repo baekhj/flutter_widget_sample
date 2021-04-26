@@ -47,7 +47,7 @@ SizedBox cancelBottomBtn(String btnNm, double btnSize, Function onClickEvent){
 }
 
 
-SizedBox bottomDefaultBtn(String btnNm, double btnSize, Function onClickEvent){
+SizedBox defaultBottomBtn(String btnNm, double btnSize, Function onClickEvent){
   return  SizedBox(
     width: btnSize,
     child: RaisedButton(
