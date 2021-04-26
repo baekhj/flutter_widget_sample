@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 SizedBox approBottomBtn(String btnNm, double btnSize, Function onClickEvent){
   return SizedBox(
-    width: 100,
+    width: btnSize,
     child: RaisedButton(
       onPressed: onClickEvent,
       child: Text(
@@ -23,9 +23,9 @@ SizedBox approBottomBtn(String btnNm, double btnSize, Function onClickEvent){
   );
 }
 
-SizedBox cancelBottomBtn(String btnNm, Function onClickEvent){
+SizedBox cancelBottomBtn(String btnNm, double btnSize, Function onClickEvent){
   return SizedBox(
-    width: 100,
+    width: btnSize,
     child: RaisedButton(
       onPressed: onClickEvent,
       child: Text(
