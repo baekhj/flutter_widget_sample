@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-SizedBox approBottomBtn(String btnNm, double btnSize, Function onClickEvent){
+SizedBox okBottomBtn(String btnNm, double btnSize, Function onClickEvent){
   return SizedBox(
     width: btnSize,
     child: RaisedButton(

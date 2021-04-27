@@ -17,7 +17,6 @@ class aesScryptoJSSample extends StatefulWidget {
 
 class _aesScryptoJSSampleState extends State<aesScryptoJSSample> {
 
-  String _selectValue = '';
   TextEditingController txtCtr; //FieldController..
   TextEditingController keyTxtCtr; //FieldController..
   TextEditingController encTxtCtr; //FieldController..
@@ -34,7 +33,6 @@ class _aesScryptoJSSampleState extends State<aesScryptoJSSample> {
 
   @override
   Widget build(BuildContext context) {
-    print('빌드');
     return Scaffold(
       appBar: AppBar(
         title: Text(

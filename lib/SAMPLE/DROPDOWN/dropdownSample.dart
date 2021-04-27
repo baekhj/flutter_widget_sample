@@ -108,7 +108,7 @@ class _dropdownSampleState extends State<dropdownSample> {
                 _isDisable = true;
               });
             }),
-            approBottomBtn("활성화", MediaQuery.of(context).size.width*0.9, () {
+            okBottomBtn("활성화", MediaQuery.of(context).size.width*0.9, () {
               setState(() {
                 _isDisable = false;
               });
