@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 * 동기식으로 사용하려 할때 이용 ex) Result result = await doPost(domainUrl, srestUrl, param);
 * return Result / Result.data 안에 모든 리턴데이터 포함되어있음
 * */
-Future<Result> doPost(String url, Map<String, Object> param) async {
+Future<Result> doRest(String url, String method, Map<String, Object> param) async {
   final storage = new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
   String domainUrl = await storage.read(key: "domainUrl"); 
   String at = await storage.read(key: "at");
@@ -26,13 +26,39 @@ Future<Result> doPost(String url, Map<String, Object> param) async {
       "Accept":"application/json"
     };
   }
-
-  http.Response response = await http.post(
+  var pr = '';
+  http.Response response;
+  if(method == 'POST'){
+    response = await http.post(
       //Uri.encodeFull(url),
-      domainUrl+url,
-      headers:headers,
-      body:param
-      );
+        domainUrl+url,
+        headers:headers,
+        body:param
+    );
+  }else if(method == 'GET'){
+    param.forEach((key, value) {
+      pr+=key+'='+value+'&';
+    });
+    response = await http.get(
+      //Uri.encodeFull(url),
+        domainUrl+url+ (pr==''?'':(url.contains('?')?'&'+pr:'?'+pr)),
+        headers:headers,
+    );
+  }else if(method == 'PUT'){
+    response = await http.put(
+      //Uri.encodeFull(url),
+        domainUrl+url,
+        headers:headers,
+        body:param
+    );
+  }else if(method == 'DELETE'){
+    response = await http.delete(
+      //Uri.encodeFull(url),
+        domainUrl+url+ (pr==''?'':(url.contains('?')?'&'+pr:'?'+pr)),
+        headers:headers,
+    );
+  }
+
   /*print('response.statusCode : ');
   print(response.statusCode);
   print('json.decode(response.body)');
@@ -78,7 +104,7 @@ Future<Result> doPost(String url, Map<String, Object> param) async {
           value: rert
       );
     }
-    return await doPost(url, param);
+    return await doRest(url, method, param);
   }
   return result;
 }
@@ -89,7 +115,7 @@ Future<Result> doPost(String url, Map<String, Object> param) async {
 * buildContext : 프로그래스바 생성을 위해 받음
 * Callback 함수 파라미터 : Result
 * */
-doPostCallback(String url, Map<String, Object> param, BuildContext context, bool ProgressWidgetAble, Function callback) async {
+doRestCallback(String url, String method, Map<String, Object> param, BuildContext context, bool ProgressWidgetAble, Function callback) async {
 
   bool _show = true;
   final storage = new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
@@ -119,13 +145,13 @@ doPostCallback(String url, Map<String, Object> param, BuildContext context, bool
                   padding: EdgeInsets.all(0),
                   height: 50,
                   width: 30,
-                  decoration: BoxDecoration(
+                  /*decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
                         domainUrl+'/common/images/renewal/progressImg.png',
                       ),
                     ),
-                  ),
+                  ),*/
                   child: Center(
                       child:SizedBox(
                         child:
@@ -161,12 +187,38 @@ doPostCallback(String url, Map<String, Object> param, BuildContext context, bool
       "Accept":"application/json"
     };
   }
-  http.Response response = await http.post(
-    //Uri.encodeFull(url),
-      domainUrl+url,
+  var pr = '';
+  http.Response response;
+  if(method == 'POST'){
+    response = await http.post(
+      //Uri.encodeFull(url),
+        domainUrl+url,
+        headers:headers,
+        body:param
+    );
+  }else if(method == 'GET'){
+    param.forEach((key, value) {
+      pr+=key+'='+value+'&';
+    });
+    response = await http.get(
+      //Uri.encodeFull(url),
+      domainUrl+url+ (pr==''?'':(url.contains('?')?'&'+pr:'?'+pr)),
       headers:headers,
-      body:param
-  );
+    );
+  }else if(method == 'PUT'){
+    response = await http.put(
+      //Uri.encodeFull(url),
+        domainUrl+url,
+        headers:headers,
+        body:param
+    );
+  }else if(method == 'DELETE'){
+    response = await http.delete(
+      //Uri.encodeFull(url),
+      domainUrl+url+ (pr==''?'':(url.contains('?')?'&'+pr:'?'+pr)),
+      headers:headers,
+    );
+  }
   Result result =  new Result();
   Map<String, dynamic> resultMap = json.decode(response.body);
   if(resultMap.containsKey("DATA")) {
@@ -211,7 +263,7 @@ doPostCallback(String url, Map<String, Object> param, BuildContext context, bool
           value: rert
       );
       print('재발급후 재조회!!!');
-      Result res = await doPost(url, param);
+      Result res = await doRest(url, method, param);
       if(ProgressWidgetAble == true) Navigator.pop(context);
       callback(res);
     }
