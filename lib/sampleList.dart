@@ -15,6 +15,13 @@ class SampleList extends StatefulWidget {
 class _SampleListState extends State<SampleList> {
 
   List<RowData> dataList;
+  TextEditingController valCtr; //FieldController..
+
+  @override
+  void initState() {
+    super.initState();
+    valCtr = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +49,15 @@ class _SampleListState extends State<SampleList> {
 
     ];
 
-
     List<ListTile> bodyData = [];
     for(int x=0; x < dataList.length; x++){
-      bodyData.add(createRowData(dataList[x]));
+      if(valCtr.text != null && valCtr.text != ''){
+        if(dataList[x].info.toLowerCase().contains(valCtr.text.toLowerCase())){
+          bodyData.add(createListTile(dataList[x]));
+        }
+      }else{
+        bodyData.add(createListTile(dataList[x]));
+      }
     }
     return Scaffold(
       appBar: AppBar(
@@ -57,12 +69,37 @@ class _SampleListState extends State<SampleList> {
 
         ),
       ),
-      body: ListView(
-        children: bodyData,
-      ),);
+      body: SingleChildScrollView(
+        child: Column(
+            children: [
+              SizedBox(
+                height: 80,
+                child: Container(
+                  width: MediaQuery.of(context).size.width*0.8,
+                  child: TextField(
+                    controller: valCtr,
+                    decoration: InputDecoration(
+                      labelText: '검색',
+                    ),
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                  ),
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height*0.8,
+                child: ListView(
+                  children: bodyData,
+                ),
+              ),
+            ],
+        ),
+      ),
+    );
   }
 
-  ListTile createRowData(RowData data){
+  ListTile createListTile(RowData data){
     return ListTile(
       title : Text(
         data.info,
