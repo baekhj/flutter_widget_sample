@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_sample/SAMPLE/AES/aesScryptoJSSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DATEPICKER/datePickerSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DROPDOWN/dropdownSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/SWIPE/swipeSample_list.dart';
@@ -8,7 +9,7 @@ class SampleList extends StatefulWidget {
   String title;
   Map<String, dynamic> data;
   SampleList({this.title, this.data});
-  @override
+  @override // createState() = 위젯 생성 후 실행
   _SampleListState createState() => _SampleListState();
 }
 
@@ -17,14 +18,36 @@ class _SampleListState extends State<SampleList> {
   List<RowData> dataList;
   TextEditingController valCtr; //FieldController..
 
+  
   @override
   void initState() {
     super.initState();
     valCtr = TextEditingController();
+
+  }
+
+  @override
+  void didChangeDependencies() {  
+    //initState 호출된 후 호출되는 아이
+    //initState 와 다르게 의존하는 위젯이 변경되면 다시 호출됨
+    super.didChangeDependencies();
+    print("didChangeDependencies");
+  }
+
+  @override
+  void didUpdateWidget(covariant SampleList oldWidget) {  //부모위젯이 재빌드되어 위젯이 갱신될때
+    super.didUpdateWidget(oldWidget);
+    print("didUpdateWidget");
+  }
+
+  @override
+  void deactivate() { //본인이 제거될때구만
+    print("deactivate");
   }
 
   @override
   Widget build(BuildContext context) {
+
     dataList = [
       RowData(
           info: 'WidgetSample 다시띄우기 (Navigator.push)',
@@ -45,6 +68,10 @@ class _SampleListState extends State<SampleList> {
       RowData(
           info: 'DatePicker Sample',
           widget: datepickerSample(title: 'DatePicker Sample')
+      ),
+      RowData(
+          info: 'aesScryptoJSSample Sample',
+          widget: aesScryptoJSSample(title: 'aesScryptoJSSample Sample')
       ),
 
     ];
