@@ -85,10 +85,11 @@ Future<Result> doRest(String url, String method, Map<String, Object> param) asyn
     result.resultMessage = '';
   }
 
+  String id = await storage.read(key: 'id');
+
   if(result.result == "401"){ //토큰 갱신 필요
     Map<String, Object> params = {
-      "sysareaId":param["sysareaId"],
-      "loginUserId":param["id"],
+      "loginUserId":id,
     };
     Result refreshMap = await refreshToken("/authenticate/get_access_token.do", param);
     if(refreshMap.resultCode !="200") return refreshMap;
@@ -241,9 +242,9 @@ doRestCallback(String url, String method, Map<String, Object> param, BuildContex
     result.resultMessage = '';
   }
   if(result.result == "401"){ //토큰 갱신 필요
+    String id = await storage.read(key: 'id');
     Map<String, Object> params = {
-      "sysareaId":param["sysareaId"],
-      "loginUserId":param["id"],
+      "loginUserId":id
     };
     print('재발급 가즈아!');
     Result refreshMap = await refreshToken("/authenticate/get_access_token.do", param);
