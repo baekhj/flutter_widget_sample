@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_sample/SAMPLE/AES/aesScryptoJSSample.dart';
+import 'package:flutter_widget_sample/SAMPLE/CLOSEPOP/containerPopSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DATEPICKER/datePickerSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DROPDOWN/dropdownSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/REST/restCallSample.dart';
@@ -82,6 +83,10 @@ class _SampleListState extends State<SampleList> {
       RowData(
           info: 'RestCall Sample',
           widget: restCallSample(title: 'RestCall Sample')
+      ),
+      RowData(
+          info: 'Container Pop Sample (화면클릭시 위젯 닫기)',
+          widget: containerPopSample(title: 'Container Pop Sample')
       ),
 
     ];
