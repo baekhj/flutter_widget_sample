@@ -17,6 +17,8 @@ class _ParentWidgetState extends State<ParentWidget> {
   String _child1Text='';
   String _child2Text='';
   bool child2Open = false;
+  TextEditingController txtCtr;
+  String txt='';
 
   Function child1Return(String text){
     setState(() {
@@ -30,6 +32,14 @@ class _ParentWidgetState extends State<ParentWidget> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    txtCtr = TextEditingController();
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -38,6 +48,22 @@ class _ParentWidgetState extends State<ParentWidget> {
         child: Column(
           children: [
             Text('부모 / 자식 위젯간 데이터 참조'),
+            Row(
+              children: [
+                Text('부모값 : '),
+                SizedBox(
+                  width: 300,
+                  child: TextField(
+                    controller: txtCtr,
+                    onChanged: (value) {
+                      txt = value;
+                      setState(() {
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
             Row(
               children: [
                 Text('자식1에서 입력한 값 : '),
@@ -75,7 +101,7 @@ class _ParentWidgetState extends State<ParentWidget> {
             Visibility(
               visible: child2Open,
               child: StatefulBuilder(
-                builder: (context, setState) => childWidget2(callback: child2Return,),
+                builder: (context, setState) => childWidget2(callback: child2Return,parentTxt: txt,),
               ),
             ),
           ],
