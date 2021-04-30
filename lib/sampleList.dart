@@ -7,6 +7,7 @@ import 'package:flutter_widget_sample/SAMPLE/REST/restCallSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/STORAGE/flutterSecureStorageSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/SWIPE/swipeSample_list.dart';
 import 'package:flutter_widget_sample/SAMPLE/TEXT/TextWidget.dart';
+import 'package:flutter_widget_sample/SAMPLE/WIDGET/DATA/WidgetDataLinkSample.dart';
 
 class SampleList extends StatefulWidget {
   String title;
@@ -87,6 +88,10 @@ class _SampleListState extends State<SampleList> {
       RowData(
           info: 'Container Pop Sample (화면클릭시 위젯 닫기)',
           widget: containerPopSample(title: 'Container Pop Sample')
+      ),
+      RowData(
+          info: 'Widget DataLink Sample (위젯간 데이터 참조??연계??)',
+          widget: widgetDataLinkSample(title: 'Widget DataLink Sample')
       ),
 
     ];
