@@ -19,6 +19,8 @@ class _ParentWidgetState extends State<ParentWidget> {
   bool child2Open = false;
   TextEditingController txtCtr;
   String txt='';
+  TextEditingController txtCtr2;
+  String txt2='';
 
   Function child1Return(String text){
     setState(() {
@@ -30,11 +32,16 @@ class _ParentWidgetState extends State<ParentWidget> {
       _child2Text = text;
     });
   }
+  Function curWidgetSetState(){
+    setState(() {
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     txtCtr = TextEditingController();
+    txtCtr2 = TextEditingController();
   }
 
 
@@ -50,15 +57,31 @@ class _ParentWidgetState extends State<ParentWidget> {
             Text('부모 / 자식 위젯간 데이터 참조'),
             Row(
               children: [
-                Text('부모값 : '),
+                Text('부모값(실시간반영) : '),
                 SizedBox(
-                  width: 300,
+                  width: 200,
                   child: TextField(
                     controller: txtCtr,
                     onChanged: (value) {
                       txt = value;
                       setState(() {
                       });
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text('부모값2(부모창위잿갱신시반영) : '),
+                SizedBox(
+                  width: 140,
+                  child: TextField(
+                    controller: txtCtr2,
+                    onChanged: (value) {
+                      txt2 = value;
+                      /*setState(() {
+                      });*/
                     },
                   ),
                 ),
@@ -101,7 +124,7 @@ class _ParentWidgetState extends State<ParentWidget> {
             Visibility(
               visible: child2Open,
               child: StatefulBuilder(
-                builder: (context, setState) => childWidget2(callback: child2Return,parentTxt: txt,),
+                builder: (context, setState) => childWidget2(callback: child2Return,parentTxt: txt,parentTxt2: txt2, parentSetState: curWidgetSetState,),
               ),
             ),
           ],
