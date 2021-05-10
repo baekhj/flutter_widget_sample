@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_sample/SAMPLE/AES/aesScryptoJSSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/CLOSEPOP/containerPopSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DATEPICKER/datePickerSample.dart';
+import 'package:flutter_widget_sample/SAMPLE/DISPLAY/showHideSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DROPDOWN/dropdownSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/REST/restCallSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/STORAGE/flutterSecureStorageSample.dart';
@@ -93,6 +94,10 @@ class _SampleListState extends State<SampleList> {
           info: 'Widget DataLink Sample (위젯간 데이터 참조??연계??)',
           widget: widgetDataLinkSample(title: 'Widget DataLink Sample')
       ),
+      RowData(
+          info: 'Widget Show & Hide Sample',
+          widget: showHideSample(title: 'Widget Show & Hide Sample')
+      ),
 
     ];
 
@@ -155,6 +160,8 @@ class _SampleListState extends State<SampleList> {
         ),
       ),
       onTap: () => openPage(context, data),
+      //contentPadding: EdgeInsets.all(0),
+
     );
   }
 }

@@ -70,8 +70,9 @@ SizedBox defaultBottomBtn(String btnNm, double btnSize, Function onClickEvent){
   );
 }
 
-SizedBox createTopBtn(String btnNm, Function onClickEvent){
+SizedBox createTopBtn(String btnNm, double btnSize, Function onClickEvent){
   return SizedBox(
+    width: btnSize,
     child: RaisedButton(
       padding: EdgeInsets.only(
         top: 0,
