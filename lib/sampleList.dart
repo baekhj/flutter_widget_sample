@@ -8,6 +8,7 @@ import 'package:flutter_widget_sample/SAMPLE/REST/restCallSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/STORAGE/flutterSecureStorageSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/SWIPE/swipeSample_list.dart';
 import 'package:flutter_widget_sample/SAMPLE/TEXT/TextWidget.dart';
+import 'package:flutter_widget_sample/SAMPLE/TREEVIEW/TreeViewSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/WIDGET/DATA/WidgetDataLinkSample.dart';
 
 class SampleList extends StatefulWidget {
@@ -97,6 +98,10 @@ class _SampleListState extends State<SampleList> {
       RowData(
           info: 'Widget Show & Hide Sample',
           widget: showHideSample(title: 'Widget Show & Hide Sample')
+      ),
+      RowData(
+          info: 'TreeView Sample - 조직도 같은거..',
+          widget: OrgChart(title: 'TreeView Sample')
       ),
 
     ];
