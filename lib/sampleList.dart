@@ -10,6 +10,7 @@ import 'package:flutter_widget_sample/SAMPLE/SWIPE/swipeSample_list.dart';
 import 'package:flutter_widget_sample/SAMPLE/TEXT/TextWidget.dart';
 import 'package:flutter_widget_sample/SAMPLE/TREEVIEW/TreeViewSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/WIDGET/DATA/WidgetDataLinkSample.dart';
+import 'package:flutter_widget_sample/SAMPLE/WIDGET/DATA2/WidgetDataLinkSample2.dart';
 
 class SampleList extends StatefulWidget {
   String title;
@@ -94,6 +95,10 @@ class _SampleListState extends State<SampleList> {
       RowData(
           info: 'Widget DataLink Sample (위젯간 데이터 참조??연계??)',
           widget: widgetDataLinkSample(title: 'Widget DataLink Sample')
+      ),
+      RowData(
+          info: 'Widget DataLink Sample2 (팝업느낌으로다가..)',
+          widget: widgetDataLinkSample2(title: 'Widget DataLink Sample2')
       ),
       RowData(
           info: 'Widget Show & Hide Sample',
