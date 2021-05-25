@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_sample/SAMPLE/AES/aesScryptoJSSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/CLOSEPOP/containerPopSample.dart';
+import 'package:flutter_widget_sample/SAMPLE/DATEPICKER/MultiSelectCalendarSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DATEPICKER/datePickerSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DISPLAY/showHideSample.dart';
 import 'package:flutter_widget_sample/SAMPLE/DROPDOWN/dropdownSample.dart';
@@ -107,6 +108,10 @@ class _SampleListState extends State<SampleList> {
       RowData(
           info: 'TreeView Sample - 조직도 같은거..',
           widget: OrgChart(title: 'TreeView Sample')
+      ),
+      RowData(
+          info: 'MultiSelect Calendar Sample',
+          widget: MultiSelectCalendarSample(title: 'MultiSelect Calendar Sample')
       ),
 
     ];
